@@ -3,15 +3,15 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Vue Cadastre</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-    <link rel="stylesheet" href="./src/css/leaflet-locatecontrol/dist/L.Control.Locate.min.css" />
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css' />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-    <script src="https://makinacorpus.github.io/Leaflet.FileLayer/leaflet.filelayer.js"></script>
-    <script src="https://makinacorpus.github.io/Leaflet.FileLayer/togeojson/togeojson.js"></script>
-    <script src="./src/js/L.Control.Locate.min.js" charset="utf-8"></script>
-    <script src="./src/js/l.control.geosearch.js"></script>
-    <script src="./src/js/l.geosearch.provider.openstreetmap.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <link rel="stylesheet" href="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.css" />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css' rel='stylesheet' />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <script src="http://makinacorpus.github.io/Leaflet.FileLayer/leaflet.filelayer.js"></script>
+    <script src="http://makinacorpus.github.io/Leaflet.FileLayer/togeojson/togeojson.js"></script>
+    <script src="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <script src="src/js/l.control.geosearch.js"></script>
+    <script src="src/js/l.geosearch.provider.openstreetmap.js"></script>
     <link rel="stylesheet" href="./src/css/l.geosearch.css" />
     <style>
         #map {
@@ -27,59 +27,55 @@
     <div id="map"></div>
 
     <script type="text/javascript">
-        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
               maxZoom: 18,
               detectRetina: false,
               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             });
-            //cadastre = L.tileLayer('http://tms.cadastre.openstreetmap.fr/*/tout/{z}/{x}/{y}.png', {
-            //  maxZoom: 22,
-            //  detectRetina: true,
-            //  attribution: '<a href="http://cadastre.gouv.fr">cadastre.gouv.fr</a>',
-            //});
-
-            //cadastresep = L.tileLayer('http://tms.cadastre.openstreetmap.fr/**/tout/{z}/{x}/{y}.png', {
-            //  maxZoom: 22,
-            //  detectRetina: true,
-            //  zIndex: 5,
-            //  //attribution: '<a href="http://cadastre.gouv.fr">cadastre.gouv.fr</a>',
-            //});
-
-            //sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            //  maxZoom: 18,
-            //  detectRetina: false,
-	    //         attribution: '&copy; Esri'
-            //});
-            //var Topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-             // maxZoom: 18,
-             // detectRetina: false,
-             //   attribution: '&copy; Esri'
-             //});
-        //var cadastre_transp = L.tileLayer('http://tms.cadastre.openstreetmap.fr/*/transp/{z}/{x}/{y}.png', {
-        //  maxZoom: 22,
-        //  detectRetina: true,
-        //  attribution: '<a href="http://cadastre.gouv.fr">cadastre.gouv.fr</a>',
-        //});
-
-        //var cadastresep_transp = L.tileLayer('http://tms.cadastre.openstreetmap.fr/**/transp/{z}/{x}/{y}.png', {
-        //  maxZoom: 22,
-        //  detectRetina: true,
-        //  zIndex: 6,
-        //  //attribution: '<a href="http://cadastre.gouv.fr">cadastre.gouv.fr</a>',
-        //});
-
+            cadastre = L.tileLayer('http://tms.cadastre.openstreetmap.fr/*/tout/{z}/{x}/{y}.png', {
+              maxZoom: 22,
+              detectRetina: true,
+              attribution: '<a href="http://cadastre.gouv.fr">cadastre.gouv.fr</a>',
+            });
+            cadastresep = L.tileLayer('http://tms.cadastre.openstreetmap.fr/**/tout/{z}/{x}/{y}.png', {
+              maxZoom: 22,
+              detectRetina: true,
+              zIndex: 5,
+              //attribution: '<a href="http://cadastre.gouv.fr">cadastre.gouv.fr</a>',
+            });
+            sat = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+              maxZoom: 18,
+              detectRetina: false,
+	             attribution: '&copy; Esri'
+            });
+            var Topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+              maxZoom: 18,
+              detectRetina: false,
+                attribution: '&copy; Esri'
+             });
+        var cadastre_transp = L.tileLayer('http://tms.cadastre.openstreetmap.fr/*/transp/{z}/{x}/{y}.png', {
+          maxZoom: 22,
+          detectRetina: true,
+          attribution: '<a href="http://cadastre.gouv.fr">cadastre.gouv.fr</a>',
+        });
+        var cadastresep_transp = L.tileLayer('http://tms.cadastre.openstreetmap.fr/**/transp/{z}/{x}/{y}.png', {
+          maxZoom: 22,
+          detectRetina: true,
+          zIndex: 6,
+          //attribution: '<a href="http://cadastre.gouv.fr">cadastre.gouv.fr</a>',
+        });
         var map = L.map('map', {
             center: [45.19089,5.70355],
             zoom: 18,
-            layers: [osm]//cadastre]
+            layers: [cadastre]
         });
         var baseMaps = {
-            //"Satellite": sat,
-            //"Topo.": Topo,
-            "OpenStreetMap": osm
-            //"Cadastre": cadastre
+            "Satellite": sat,
+            "Topo.": Topo,
+            "OpenStreetMap": osm,
+            "Cadastre": cadastre
         };
-        //var overlays = {"Cadastre transparent": cadastre_transp};
+        var overlays = {"Cadastre transparent": cadastre_transp};
         var style = {color:'red', opacity: 1.0, fillOpacity: 0.1, weight: 2, clickable: true};
         L.Control.FileLayerLoad.LABEL = '#';//'⌘';
         L.Control.fileLayerLoad({
@@ -90,43 +86,38 @@
                               return L.marker(latlng, {style: style}).bindPopup(data['properties']['Description'],{maxWidth: 200, maxHeight: 350});
                            }},
         }).addTo(map);
-
-
-        //cadastresep.setOpacity(1);
-        //map.addLayer(cadastresep)
-        ////listen for cadastre
-        //map.on('baselayerchange', function(eo)
-        //   {
-        //    if( eo.name == 'Cadastre' ) {
-        //    cadastresep.setOpacity(1);
-        //    }
-        //    else {
-        //  cadastresep.setOpacity(0);
-        //  }
-        //  })
-
-        //cadastresep_transp.setOpacity(0);
-        //map.addLayer(cadastresep_transp)
-        // //listen for cadastre_transp
-        //map.on('overlayadd', function(eo)
-        //{
-        //  if( eo.name == 'Cadastre transparent' ) {
-        //    cadastresep_transp.setOpacity(1),
-        //    sat.setOpacity(0.5);
-        //  }
-        //  else {
-        //    cadastresep_transp.setOpacity(0);
-        //  }
-        //})
-
-        //map.on('overlayremove', function(eo)
-        //{
-        //  if( eo.name == 'Cadastre transparent' ) {
-        //    cadastresep_transp.setOpacity(0),
-        //    sat.setOpacity(1);
-        //  }
-       // })
-
+        cadastresep.setOpacity(1);
+        map.addLayer(cadastresep)
+        //listen for cadastre
+        map.on('baselayerchange', function(eo)
+           {
+            if( eo.name == 'Cadastre' ) {
+            cadastresep.setOpacity(1);
+            }
+            else {
+          cadastresep.setOpacity(0);
+          }
+          })
+        cadastresep_transp.setOpacity(0);
+        map.addLayer(cadastresep_transp)
+         //listen for cadastre_transp
+        map.on('overlayadd', function(eo)
+        {
+          if( eo.name == 'Cadastre transparent' ) {
+            cadastresep_transp.setOpacity(1),
+            sat.setOpacity(0.5);
+          }
+          else {
+            cadastresep_transp.setOpacity(0);
+          }
+        })
+        map.on('overlayremove', function(eo)
+        {
+          if( eo.name == 'Cadastre transparent' ) {
+            cadastresep_transp.setOpacity(0),
+            sat.setOpacity(1);
+          }
+        })
         new L.Control.GeoSearch({
           provider: new L.GeoSearch.Provider.OpenStreetMap(),
             position: 'topleft',
@@ -140,7 +131,7 @@
             }
           }).addTo(map);
         L.control.scale({imperial: false}).addTo(map);
-	L.control.layers(baseMaps).addTo(map);//,overlays).addTo(map);
+	      L.control.layers(baseMaps,overlays).addTo(map);
     </script>
 </body>
 </html>

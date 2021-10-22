@@ -83,7 +83,7 @@
             fitBounds: true,
             layerOptions: {style: style,
                            pointToLayer: function (data, latlng) {
-                              return L.marker(latlng, {style: style}).bindPopup(data['properties']['Description']||data['properties']['nom'],{maxWidth: 200, maxHeight: 350});
+                              return L.marker(latlng, {style: style}).bindPopup(data['properties']['Description']||data['properties']['nom']||data['properties']['MATRICULE']+<br>+data['properties']['TYPE'],{maxWidth: 200, maxHeight: 350});
                            }},
         }).addTo(map);
         cadastresep.setOpacity(1);
